@@ -26,6 +26,10 @@
 # Function for computers turn
 ## Create a function that allows the computer to fire a shot.
 ### This is where we can use AI for the computer to play strategically
+Give instructions to the computer to make it play more strategically
+EG: First plays random and continue plays random until a hit
+if hit tries to play around the hit
+
 
 # Function to determine hit or miss
 ## Create a function that checks if cell is a hit or a miss. If cell is occupied by the ship is a hit otherwise is a miss.
