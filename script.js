@@ -10,8 +10,6 @@ const SHIPS = [2, 3, 3, 4, 5];
 
 /*----- state variables -----*/
 
-// let cellId;
-
 /*----- cached elements  -----*/
 const computerGrid = document.querySelector("#computer-grid");
 const playerGrid = document.querySelector("#player-grid");
@@ -31,7 +29,7 @@ function generateGrid(id, grid) {
       );
       cell.id = `${id}${i}${j}`;
       row.appendChild(cell);
-      cell.innerHTML = cell.id;
+      // cell.innerHTML = cell.id;
     }
     grid.appendChild(row);
   }
@@ -57,21 +55,67 @@ function goVertically() {}
 
 function placeShips(id, grid) {
   SHIPS.forEach((ship) => {
-    const dir = direction();
-    if (dir === "h") {
-      const row = Math.floor(Math.random() * 10);
-      const col = Math.floor(Math.random() * (9 - ship));
-      for (let i = col; i < col + ship; i++) {
-        const el = document.querySelector(`#${id}${row}${i}`);
-        el.classList.add("ship-h");
+    let shipAdded = false;
+    let count = 0;
+    while (!shipAdded && count < 500) {
+      const dir = direction();
+      if (dir === "h") {
+        const row = Math.floor(Math.random() * 10);
+        const col = Math.floor(Math.random() * (9 - ship));
+        let canAddShip = true;
+        for (let i = col; i < col + ship; i++) {
+          const el = document.querySelector(`#${id}${row}${i}`);
+          if (el.value) {
+            canAddShip = false;
+          }
+        }
+        if (canAddShip) {
+          for (let i = col; i < col + ship; i++) {
+            const el = document.querySelector(`#${id}${row}${i}`);
+            el.classList.add("ship-h");
+            el.innerHTML += `${ship}`;
+            el.value = true;
+          }
+          shipAdded = true;
+        }
+      } else {
+        const row = Math.floor(Math.random() * (9 - ship));
+        const col = Math.floor(Math.random() * 10);
+        let canAddShip = true;
+        for (let i = row; i < row + ship; i++) {
+          const el = document.querySelector(`#${id}${i}${col}`);
+          if (el.value) {
+            canAddShip = false;
+          }
+        }
+        if (canAddShip) {
+          for (let i = row; i < row + ship; i++) {
+            const el = document.querySelector(`#${id}${i}${col}`);
+            el.classList.add("ship-v");
+            el.innerHTML += `${ship}`;
+            el.value = true;
+          }
+          shipAdded = true;
+        }
       }
-    } else {
-      const row = Math.floor(Math.random() * (9 - ship));
-      const col = Math.floor(Math.random() * 10);
-      for (let i = row; i < row + ship; i++) {
-        const el = document.querySelector(`#${id}${i}${col}`);
-        el.classList.add("ship-v");
-      }
+
+      // const dir = direction();
+      // if (dir === "h") {
+      //   const row = Math.floor(Math.random() * 10);
+      //   const col = Math.floor(Math.random() * (9 - ship));
+      //   for (let i = col; i < col + ship; i++) {
+      //     const el = document.querySelector(`#${id}${row}${i}`);
+      //     el.classList.add("ship-h");
+      //   }
+      // } else {
+      //   const row = Math.floor(Math.random() * (9 - ship));
+      //   const col = Math.floor(Math.random() * 10);
+      //   for (let i = row; i < row + ship; i++) {
+      //     const el = document.querySelector(`#${id}${i}${col}`);
+      //     el.classList.add("ship-v");
+      //   }
+      // }
+      count++;
     }
   });
 }
