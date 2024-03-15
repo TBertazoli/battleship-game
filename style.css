@@ -14,3 +14,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.ship-h {
+  background-color: blue;
+}
+
+.ship-v {
+  background-color: red;
+}
