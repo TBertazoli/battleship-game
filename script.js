@@ -1,6 +1,16 @@
 // # battleship-game
+/*----- constants -----*/
+const PLAYERS = {
+  1: "Blue",
+  "-1": "Red",
+  null: "",
+};
+
+const SHIPS = [2, 3, 3, 4, 5];
 
 /*----- cached elements  -----*/
+const computerGrid = document.querySelector("#computer-grid");
+const playerGrid = document.querySelector("#player-grid");
 
 // # Init function defines game settings and initialize variables
 // ## boat sizes and number of boats(1x2, 2x3, 1x4, 1x5)
@@ -9,23 +19,30 @@
 function generateGrid(id, grid) {
   for (let i = 0; i < 10; i++) {
     const row = document.createElement("div");
-    row.classList.add("row", "border");
+    row.classList.add("row", "border", "border-dark-subtle");
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
-      cell.classList.add("col-sm", "border", "text-center");
-      console.log(cell);
+      cell.classList.add(
+        "col-sm",
+        "border",
+        "text-center",
+        "bg-secondary-subtle",
+        "border-dark-subtle"
+      );
       cell.id = `${id}${i}${j}`;
       row.appendChild(cell);
-      cell.innerHTML = "x";
+      cell.innerHTML = cell.id;
     }
     grid.appendChild(row);
   }
+  placeShips(grid);
+}
+
+function placeShips(grid) {
+  SHIPS.forEach((ship) => {});
 }
 
 function startGame() {
-  const computerGrid = document.querySelector("#computer-grid");
-  const playerGrid = document.querySelector("#player-grid");
-
   generateGrid("c", computerGrid);
   generateGrid("p", playerGrid);
 }
