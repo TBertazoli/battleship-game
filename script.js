@@ -1,15 +1,20 @@
 // # battleship-game
 /*----- constants -----*/
 const PLAYERS = {
-  1: "Blue",
-  "-1": "Red",
+  1: "Player",
+  "-1": "Computer",
   null: "",
 };
 
 const SHIPS = [2, 3, 3, 4, 5];
+const shipsLengthTotal = SHIPS.reduce((acc, cur) => {
+  return acc + cur;
+}, 0);
 
 /*----- state variables -----*/
-let turn;
+let count = 0;
+// let turn = Math.floor(Math.random() * 2);
+let turn = 1;
 
 /*----- cached elements  -----*/
 const computerGrid = document.querySelector("#computer-grid");
@@ -22,7 +27,6 @@ function generateGrid(id, grid) {
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
       cell.classList.add("col", "border", "text-center");
-
       cell.id = `${id}${i}${j}`;
       row.appendChild(cell);
       if (id === "c") {
@@ -31,7 +35,6 @@ function generateGrid(id, grid) {
     }
     grid.appendChild(row);
   }
-
   placeShips(id, grid);
 }
 
@@ -84,36 +87,50 @@ function placeShips(id, grid) {
           }
           shipAdded = true;
         }
-        // playersTurn(grid);
       }
       count++;
     }
   });
+  // playGame(id);
 }
 
-// function playersTurn(grid) {
-//   for (let i = 0; i < 10; i++) {
-//     for (let j = 0; j < 10; j++) {
-//       const cellEl = document.querySelector(`${i}${j}`);
+// function playGame(id) {
+//   if (turn === 1) {
+//     console.log("Players Turn");
 
-//     }
+//   } else {
+//     console.log("Computers Turn");
 //   }
 // }
 
 function checkClick(e) {
-  let target = e.target.value;
-  if (target === true) {
-    console.log("hit");
-    target.classList.add("bg-success");
+  let target = e.target;
+  if (turn === 1) {
+    console.log("Players Turn");
+    if (target.value === true) {
+      console.log("hit");
+      target.classList.add("bg-success");
+      count++;
+      turn *= -1;
+      if (count === shipsLengthTotal) {
+        console.log("Winner");
+      }
+    } else {
+      console.log("miss");
+      target.classList.add("bg-dark");
+    }
+    console.log(count);
   } else {
-    console.log("miss");
+    console.log("Computers Turn");
+    turn *= -1;
   }
+
+  //
 }
 
 function startGame() {
   generateGrid("c", computerGrid);
   generateGrid("p", playerGrid);
-  turn = turn = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
 }
 
 // # Function to determine who plays first
