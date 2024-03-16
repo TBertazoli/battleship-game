@@ -9,6 +9,7 @@ const PLAYERS = {
 const SHIPS = [2, 3, 3, 4, 5];
 
 /*----- state variables -----*/
+let turn;
 
 /*----- cached elements  -----*/
 const computerGrid = document.querySelector("#computer-grid");
@@ -17,19 +18,16 @@ const playerGrid = document.querySelector("#player-grid");
 function generateGrid(id, grid) {
   for (let i = 0; i < 10; i++) {
     const row = document.createElement("div");
-    row.classList.add("row", "border", "border-dark-subtle");
+    row.classList.add("row", "border");
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
-      cell.classList.add(
-        "col-sm",
-        "border",
-        "text-center",
+      cell.classList.add("col", "border", "text-center");
 
-        "border-dark-subtle"
-      );
       cell.id = `${id}${i}${j}`;
       row.appendChild(cell);
-      // cell.innerHTML = cell.id;
+      if (id === "c") {
+        cell.addEventListener("click", checkClick);
+      }
     }
     grid.appendChild(row);
   }
@@ -40,18 +38,7 @@ function generateGrid(id, grid) {
 function direction() {
   let random = Math.floor(Math.random() * 2) === 0 ? "h" : "v";
   return random;
-  // if (random === "h") {
-  //   goHorizontally(grid);
-  // } else {
-  //   goVertically(grid);
-  // }
 }
-
-function goHorizontally(grid) {
-  console.log(grid);
-}
-
-function goVertically() {}
 
 function placeShips(id, grid) {
   SHIPS.forEach((ship) => {
@@ -97,47 +84,37 @@ function placeShips(id, grid) {
           }
           shipAdded = true;
         }
+        // playersTurn(grid);
       }
-
-      // const dir = direction();
-      // if (dir === "h") {
-      //   const row = Math.floor(Math.random() * 10);
-      //   const col = Math.floor(Math.random() * (9 - ship));
-      //   for (let i = col; i < col + ship; i++) {
-      //     const el = document.querySelector(`#${id}${row}${i}`);
-      //     el.classList.add("ship-h");
-      //   }
-      // } else {
-      //   const row = Math.floor(Math.random() * (9 - ship));
-      //   const col = Math.floor(Math.random() * 10);
-      //   for (let i = row; i < row + ship; i++) {
-      //     const el = document.querySelector(`#${id}${i}${col}`);
-      //     el.classList.add("ship-v");
-      //   }
-      // }
       count++;
     }
   });
 }
 
-//     //     iterate over ship ar
-//     //  choose random v or h direction
-//     //  if h
-//     //  choose random row
-//     //  else
-//     //  choose random col
-//   );
+// function playersTurn(grid) {
+//   for (let i = 0; i < 10; i++) {
+//     for (let j = 0; j < 10; j++) {
+//       const cellEl = document.querySelector(`${i}${j}`);
+
+//     }
+//   }
+// }
+
+function checkClick(e) {
+  let target = e.target.value;
+  if (target === true) {
+    console.log("hit");
+    target.classList.add("bg-success");
+  } else {
+    console.log("miss");
+  }
+}
 
 function startGame() {
   generateGrid("c", computerGrid);
   generateGrid("p", playerGrid);
+  turn = turn = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
 }
-
-// ### note: define if boats are integers or characters (TBD)
-
-// # Function to place ships on the grid
-// ## Create a function that randomly places the ships on the grid for both user and computer (If time permit create a function that allows the user to place the ships on the grid)
-// ### note: The ships will be randomically placed on each grid without overlaping the ships according to the number of cell each ship will ocupy
 
 // # Function to determine who plays first
 // ## Create a function to randomly choose who plays first

@@ -8,13 +8,6 @@
 # Function to place ships on the grid
 ## Create a function that randomly places the ships on the grid for both user and computer (If time permit create a function that allows the user to place the ships on the grid)
 ### note: The ships will be randomically placed on each grid without overlaping the ships according to the number of cell each ship will ocupy
- iterate over ship array
- choose random v or h direction
- if h
- choose random row
- else 
- choose random col
-
 
 # Function to determine who plays first
 ## Create a function to randomly choose who plays first
