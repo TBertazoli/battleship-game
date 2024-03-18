@@ -135,7 +135,10 @@ function computersTurn(id) {
 }
 
 function checkHit(target) {
-  if (target.value === "X" || target.classList.contains("ship")) return;
+  if (target.value === "X" && turn === -1) {
+    computersTurn("c");
+  }
+  if (target.value === "X") return;
   if (target.value === "S") {
     console.log("hit");
     target.classList.add("ship");
@@ -147,13 +150,14 @@ function checkHit(target) {
   } else {
     console.log("miss");
     target.classList.add("bg-black");
-    target.value = "X";
   }
+  target.value = "X";
   turn *= -1;
   renderMessage();
-  setTimeout(() => {
-    playGame();
-  }, "1000");
+  playGame();
+  // setTimeout(() => {
+
+  // }, "1000");
 }
 
 function startGame() {
