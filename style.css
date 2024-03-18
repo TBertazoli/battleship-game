@@ -16,6 +16,17 @@ body {
   background-size: cover;
 }
 
+h1 {
+  color: #111;
+  font-family: "Raleway", sans-serif;
+  font-size: 160px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .ship-h {
   background-color: blue;
 }
@@ -25,11 +36,17 @@ body {
 }
 
 .row {
-  height: 50px;
+  height: 80px;
 }
 
 .col-1 {
-  width: 50px;
+  width: 80px;
+  background-color: white;
+  opacity: 0.5;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .ship {

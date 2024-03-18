@@ -19,18 +19,16 @@
     <script defer src="script.js"></script>
   </head>
   <body>
-    <header>Battleship Game</header>
-    <section id="message">Display Message</section>
+    <header><h1>Sink that Ship!</h1></header>
+    <section id="message"></section>
     <section id="turns"></section>
     <section class="d-flex">
-      <div class="container text-center p-5 m-1" id="computer-grid">
-        Computers Turn
-      </div>
-      <div class="container text-center p-5 m-1" id="player-grid">
-        Players Turn
-      </div>
+      <div class="container text-center p-5 m-1" id="computer-grid"></div>
+      <div class="container text-center p-5 m-1" id="player-grid"></div>
     </section>
 
-    <button id="btn" onclick="startGame()">Play Game</button>
+    <button id="btn" class="btn btn-primary" onclick="startGame()">
+      Play Game
+    </button>
   </body>
 </html>

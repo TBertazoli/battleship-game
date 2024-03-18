@@ -21,6 +21,9 @@ const computerGrid = document.querySelector("#computer-grid");
 const playerGrid = document.querySelector("#player-grid");
 const message = document.querySelector("#message");
 const turns = document.querySelector("#turns");
+const button = document.querySelector("#btn");
+
+/*----- functions -----*/
 
 function generateGrid(id, grid) {
   for (let i = 0; i < 10; i++) {
@@ -33,7 +36,7 @@ function generateGrid(id, grid) {
         "border",
         "border-primary",
         "border-2",
-        "text-center"
+        "pointer"
       );
       cell.id = `${id}${i}${j}`;
       cell.player = id;
@@ -104,8 +107,13 @@ function placeShips(id) {
 
 function renderMessage() {
   if (winner === "T") {
+    button.classList.remove("d-none");
+    button.innerHTML = "Play again?";
     message.innerText = "Tie Game!!";
   } else if (winner) {
+    button.classList.remove("d-none");
+
+    button.innerHTML = "Play again?";
     message.innerHTML = `<span> ${PLAYERS[winner]}'s</span> Wins!`;
   } else {
     turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
@@ -113,6 +121,7 @@ function renderMessage() {
 }
 
 function playGame() {
+  button.classList.add("d-none");
   console.log("computer hit: " + computersHit, "player hits:" + playersHit);
   if (computersHit === shipsLengthTotal) {
     winner = -1;
@@ -156,6 +165,7 @@ function checkHit(target) {
     target.classList.add("bg-black");
   }
   target.value = "X";
+  target.classList.remove("pointer");
   turn *= -1;
   renderMessage();
   setTimeout(() => {
