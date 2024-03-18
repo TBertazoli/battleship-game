@@ -38,7 +38,7 @@ function generateGrid(id, grid) {
       cell.id = `${id}${i}${j}`;
       cell.player = id;
       row.appendChild(cell);
-      if (id === "c") {
+      if (id === "p") {
         cell.addEventListener("click", playersTurn);
       }
     }
@@ -117,7 +117,7 @@ function playGame() {
   if (computersHit === shipsLengthTotal || playersHit === shipsLengthTotal) {
     console.log("winner");
   } else if (turn === -1) {
-    computersTurn("p");
+    computersTurn("c");
   }
 }
 
@@ -135,7 +135,7 @@ function computersTurn(id) {
 }
 
 function checkHit(target) {
-  if (target.value === "X") return;
+  if (target.value === "X" || target.classList.contains("ship")) return;
   if (target.value === "S") {
     console.log("hit");
     target.classList.add("ship");
@@ -150,8 +150,8 @@ function checkHit(target) {
     target.value = "X";
   }
   turn *= -1;
+  renderMessage();
   setTimeout(() => {
-    renderMessage();
     playGame();
   }, "1000");
 }
@@ -162,23 +162,3 @@ function startGame() {
   renderMessage();
   playGame();
 }
-
-// # Function to determine who plays first
-// ## Create a function to randomly choose who plays first
-
-// # Function for players turn
-// ## Create a function that allows the user to click on a cell and fire a shot.
-// ### note: The user will click on a cell and with that id we will be able to mark if that cell is already occupied by the computers ship or not
-
-// # Function for computers turn
-// ## Create a function that allows the computer to fire a shot.
-// ### This is where we can use AI for the computer to play strategically
-
-// # Function to determine hit or miss
-// ## Create a function that checks if cell is a hit or a miss. If cell is occupied by the ship is a hit otherwise is a miss.
-
-// # Function to check for game completion
-// ## Create a function that checks for number of hits, whoever has all the hits completed wins the game.
-
-// # Function to check for game stats
-// ## Create a function to check for game status and and display who's turn it is
