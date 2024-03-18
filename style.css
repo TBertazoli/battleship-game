@@ -4,12 +4,8 @@
 
 body {
   height: 100vh;
-  margin: 0;
+  margin: 200px;
   font-family: "Open Sans", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-image: url("Designer\ \(3\).jpeg");
   background-repeat: no-repeat;
   background-position: center;
@@ -54,4 +50,24 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.floatR {
+  float: right !important;
+}
+
+.floatL {
+  float: left !important;
+}
+
+.turns-text {
+  /* padding: 0 395px; */
+  display: flow-root;
+  margin-top: 50px;
+}
+
+@media (max-width: 1250px) {
+  h1 {
+    font-size: 80px;
+  }
 }

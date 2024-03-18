@@ -36,7 +36,8 @@ function generateGrid(id, grid) {
         "border",
         "border-primary",
         "border-2",
-        "pointer"
+        "pointer",
+        "rounded"
       );
       cell.id = `${id}${i}${j}`;
       cell.player = id;
@@ -111,12 +112,18 @@ function renderMessage() {
     button.innerHTML = "Play again?";
     message.innerText = "Tie Game!!";
   } else if (winner) {
+    turns.classList.add("d-none");
     button.classList.remove("d-none");
-
     button.innerHTML = "Play again?";
-    message.innerHTML = `<span> ${PLAYERS[winner]}'s</span> Wins!`;
+    message.innerHTML = `<span>${PLAYERS[winner]}</span> Wins!`;
+  } else if (turn === 1) {
+    turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
+    turns.classList.add("floatR");
+    turns.classList.remove("floatL");
   } else {
     turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
+    turns.classList.add("floatL");
+    turns.classList.remove("floatR");
   }
 }
 
