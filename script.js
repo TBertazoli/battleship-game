@@ -20,16 +20,15 @@ let winner;
 const computerGrid = document.querySelector("#computer-grid");
 const playerGrid = document.querySelector("#player-grid");
 const message = document.querySelector("#message");
-const compTurnMessage = document.querySelector("#computers-turn");
-const plrTurnMessage = document.querySelector("#players-turn");
+const turns = document.querySelector("#turns");
 
 function generateGrid(id, grid) {
   for (let i = 0; i < 10; i++) {
     const row = document.createElement("div");
-    row.classList.add("row", "border");
+    row.classList.add("row", "border-1");
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
-      cell.classList.add("col", "border", "text-center");
+      cell.classList.add("col-1", "border", "text-center");
       cell.id = `${id}${i}${j}`;
       cell.player = id;
       row.appendChild(cell);
@@ -97,6 +96,20 @@ function placeShips(id) {
   });
 }
 
+function renderMessage() {
+  if (winner === "T") {
+    message.innerText = "Tie Game!!";
+  } else if (winner) {
+    message.innerHTML = `<span> ${PLAYERS[winner]}</span> Wins!`;
+  } else {
+    if (turn === -1) {
+      turns.innerHTML = "<span>Computers's</span> Turn!";
+    } else {
+      turns.innerHTML = "<span>Player's</span> Turn!";
+    }
+  }
+}
+
 function playGame() {
   if (computersHit < shipsLengthTotal || playersHit < shipsLengthTotal) {
     if (turn === -1) {
@@ -121,7 +134,6 @@ function computersTurn(id) {
 }
 
 function checkHit(target) {
-  console.log(target);
   if (target.value === "X") return;
   if (target.value === "S") {
     console.log("hit");
@@ -136,9 +148,9 @@ function checkHit(target) {
     target.classList.add("bg-black");
     target.value = "X";
   }
-
+  turn *= -1;
   setTimeout(() => {
-    turn *= -1;
+    renderMessage();
     playGame();
   }, "1000");
 }
@@ -149,22 +161,6 @@ function checkHit(target) {
 //   }
 
 // }
-
-function renderMessage() {
-  if (winner === "T") {
-    message.innerText = "Tie Game!!";
-  } else if (winner) {
-    message.innerHTML = `<span> ${PLAYERS[winner]}</span> Wins!`;
-  } else {
-    if (turn === -1) {
-      compTurnMessage.innerHTML = "<span>Computers's</span> Turn!";
-      plrTurnMessage.classList.add("d-none");
-    } else {
-      plrTurnMessage.innerHTML = "<span>Player's</span> Turn!";
-      compTurnMessage.classList.add("d-none");
-    }
-  }
-}
 
 function startGame() {
   generateGrid("c", computerGrid);

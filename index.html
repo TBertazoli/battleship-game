@@ -21,13 +21,10 @@
   <body>
     <header>Battleship Game</header>
     <section id="message">Display Message</section>
-    <section>
-      <h1>Display Board</h1>
-      <h5 id="players-turn"></h5>
-      <div class="container text-center" id="computer-grid">Computers Grid</div>
-
-      <h5 id="computers-turn"></h5>
-      <div class="container text-center" id="player-grid">Players Grid</div>
+    <section id="turns"></section>
+    <section class="d-flex">
+      <div class="container text-center m-1" id="computer-grid"></div>
+      <div class="container text-center m-1" id="player-grid"></div>
     </section>
 
     <button id="btn" onclick="startGame()">Play Game</button>
