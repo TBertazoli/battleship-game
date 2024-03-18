@@ -28,7 +28,13 @@ function generateGrid(id, grid) {
     row.classList.add("row", "border-1");
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
-      cell.classList.add("col-1", "border", "text-center");
+      cell.classList.add(
+        "col-1",
+        "border",
+        "border-primary",
+        "border-2",
+        "text-center"
+      );
       cell.id = `${id}${i}${j}`;
       cell.player = id;
       row.appendChild(cell);
@@ -102,21 +108,16 @@ function renderMessage() {
   } else if (winner) {
     message.innerHTML = `<span> ${PLAYERS[winner]}</span> Wins!`;
   } else {
-    if (turn === -1) {
-      turns.innerHTML = "<span>Computers's</span> Turn!";
-    } else {
-      turns.innerHTML = "<span>Player's</span> Turn!";
-    }
+    turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
   }
 }
 
 function playGame() {
-  if (computersHit < shipsLengthTotal || playersHit < shipsLengthTotal) {
-    if (turn === -1) {
-      computersTurn("p");
-    }
-  } else {
+  console.log("computer hit: " + computersHit, "player hits:" + playersHit);
+  if (computersHit === shipsLengthTotal || playersHit === shipsLengthTotal) {
     console.log("winner");
+  } else if (turn === -1) {
+    computersTurn("p");
   }
 }
 
@@ -137,7 +138,7 @@ function checkHit(target) {
   if (target.value === "X") return;
   if (target.value === "S") {
     console.log("hit");
-    target.classList.add("bg-success");
+    target.classList.add("ship");
     if (turn === -1) {
       computersHit++;
     } else {
@@ -154,13 +155,6 @@ function checkHit(target) {
     playGame();
   }, "1000");
 }
-
-// function checkWinner() {
-//   {
-
-//   }
-
-// }
 
 function startGame() {
   generateGrid("c", computerGrid);
