@@ -106,7 +106,7 @@ function renderMessage() {
   if (winner === "T") {
     message.innerText = "Tie Game!!";
   } else if (winner) {
-    message.innerHTML = `<span> ${PLAYERS[winner]}</span> Wins!`;
+    message.innerHTML = `<span> ${PLAYERS[winner]}'s</span> Wins!`;
   } else {
     turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
   }
@@ -114,8 +114,12 @@ function renderMessage() {
 
 function playGame() {
   console.log("computer hit: " + computersHit, "player hits:" + playersHit);
-  if (computersHit === shipsLengthTotal || playersHit === shipsLengthTotal) {
-    console.log("winner");
+  if (computersHit === shipsLengthTotal) {
+    winner = -1;
+    renderMessage();
+  } else if (playersHit === shipsLengthTotal) {
+    winner = 1;
+    renderMessage();
   } else if (turn === -1) {
     computersTurn("c");
   }
@@ -154,10 +158,9 @@ function checkHit(target) {
   target.value = "X";
   turn *= -1;
   renderMessage();
-  playGame();
-  // setTimeout(() => {
-
-  // }, "1000");
+  setTimeout(() => {
+    playGame();
+  }, "1000");
 }
 
 function startGame() {
