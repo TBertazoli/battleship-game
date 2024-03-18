@@ -22,3 +22,7 @@ body {
 .ship-v {
   background-color: red;
 }
+
+.row {
+  min-height: 25px;
+}

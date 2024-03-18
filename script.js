@@ -1,4 +1,3 @@
-// # battleship-game
 /*----- constants -----*/
 const PLAYERS = {
   1: "Player",
@@ -12,13 +11,16 @@ const shipsLengthTotal = SHIPS.reduce((acc, cur) => {
 }, 0);
 
 /*----- state variables -----*/
-let count = 0;
-// let turn = Math.floor(Math.random() * 2);
-let turn = 1;
+let playersHit = 0;
+let computersHit = 0;
+// let turn = Math.floor(Math.random() * 2)=== 0 ? 1 : -1;
+let turn = "c";
+let winner;
 
 /*----- cached elements  -----*/
 const computerGrid = document.querySelector("#computer-grid");
 const playerGrid = document.querySelector("#player-grid");
+const message = document.querySelector("#message");
 
 function generateGrid(id, grid) {
   for (let i = 0; i < 10; i++) {
@@ -28,14 +30,15 @@ function generateGrid(id, grid) {
       const cell = document.createElement("div");
       cell.classList.add("col", "border", "text-center");
       cell.id = `${id}${i}${j}`;
+      cell.player = id;
       row.appendChild(cell);
       if (id === "c") {
-        cell.addEventListener("click", checkClick);
+        cell.addEventListener("click", playersTurn);
       }
     }
     grid.appendChild(row);
   }
-  placeShips(id, grid);
+  placeShips(id, turn);
 }
 
 function direction() {
@@ -43,7 +46,7 @@ function direction() {
   return random;
 }
 
-function placeShips(id, grid) {
+function placeShips(id, turn) {
   SHIPS.forEach((ship) => {
     let shipAdded = false;
     let count = 0;
@@ -64,7 +67,7 @@ function placeShips(id, grid) {
             const el = document.querySelector(`#${id}${row}${i}`);
             el.classList.add("ship-h");
             el.innerHTML += `${ship}`;
-            el.value = true;
+            el.value = "S";
           }
           shipAdded = true;
         }
@@ -83,7 +86,7 @@ function placeShips(id, grid) {
             const el = document.querySelector(`#${id}${i}${col}`);
             el.classList.add("ship-v");
             el.innerHTML += `${ship}`;
-            el.value = true;
+            el.value = "S";
           }
           shipAdded = true;
         }
@@ -91,46 +94,73 @@ function placeShips(id, grid) {
       count++;
     }
   });
-  // playGame(id);
 }
 
-// function playGame(id) {
-//   if (turn === 1) {
-//     console.log("Players Turn");
+function playGame() {
+  if (computersHit < shipsLengthTotal || playersHit < shipsLengthTotal) {
+    if (turn === "c") {
+      computersTurn("p");
+    }
+  } else {
+    console.log("winner");
+  }
+}
 
-//   } else {
-//     console.log("Computers Turn");
+function playersTurn(e) {
+  let target = e.target;
+  if (turn === "c") return;
+  let targetId = target.id;
+  checkHit(target);
+}
+
+function computersTurn(id) {
+  const row = Math.floor(Math.random() * 10);
+  const col = Math.floor(Math.random() * 10);
+  const el = document.querySelector(`#${id}${row}${col}`);
+  checkHit(el);
+}
+
+function checkHit(target) {
+  if (target.value === "X") return;
+  if (target.value === "S") {
+    console.log("hit");
+    target.classList.add("bg-success");
+    if (turn === "c") {
+      computersHit++;
+    } else {
+      playersHit++;
+    }
+  } else {
+    console.log("miss");
+    target.classList.add("bg-black");
+    target.value = "X";
+  }
+  turn = turn === "c" ? "p" : "c";
+  playGame();
+}
+
+// function checkWinner() {
+//   {
+
 //   }
+
 // }
 
-function checkClick(e) {
-  let target = e.target;
-  if (turn === 1) {
-    console.log("Players Turn");
-    if (target.value === true) {
-      console.log("hit");
-      target.classList.add("bg-success");
-      count++;
-      turn *= -1;
-      if (count === shipsLengthTotal) {
-        console.log("Winner");
-      }
-    } else {
-      console.log("miss");
-      target.classList.add("bg-dark");
-    }
-    console.log(count);
+function renderMessage() {
+  if (winner === "T") {
+    message.innerText = "Tie Game!!";
+  } else if (winner) {
+    message.innerHTML = `<span style="color:${PLAYERS[winner]}"> ${PLAYERS[winner]}</span> Wins!`;
   } else {
-    console.log("Computers Turn");
-    turn *= -1;
+    message.innerHTML = `<span style="color:${PLAYERS[turn]}">${PLAYERS[turn]}</span>'s Turn!`;
   }
-
-  //
 }
 
 function startGame() {
   generateGrid("c", computerGrid);
   generateGrid("p", playerGrid);
+  renderMessage();
+  playGame();
 }
 
 // # Function to determine who plays first
