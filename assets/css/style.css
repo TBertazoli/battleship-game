@@ -1,12 +1,12 @@
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 body {
   height: 100vh;
   margin: 200px;
   font-family: "Open Sans", sans-serif;
-  background-image: url("Designer\ \(3\).jpeg");
+  background-image: url("/assets/images/ocean.jpeg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -23,13 +23,13 @@ h1 {
   text-transform: uppercase;
 }
 
-.ship-h {
-  background-color: blue;
-}
+/* .grid{
+  widht = 
+} */
 
-.ship-v {
-  background-color: red;
-}
+/* .container {
+  margin: 50px;
+} */
 
 .row {
   height: 50px;
@@ -38,7 +38,7 @@ h1 {
 .col-1 {
   width: 50px;
   background-color: white;
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .pointer {
@@ -46,7 +46,7 @@ h1 {
 }
 
 .ship {
-  background-image: url("ship.jpeg");
+  background-image: url("/assets/images/ship.jpeg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -60,14 +60,21 @@ h1 {
   float: left !important;
 }
 
-.turns-text {
-  /* padding: 0 395px; */
-  display: flow-root;
-  margin-top: 50px;
-}
-
-@media (max-width: 1250px) {
+@media (max-width: 1700px) {
+  body {
+    margin: 100px;
+  }
   h1 {
     font-size: 80px;
+  }
+
+  row {
+    min-height: 40px;
+  }
+
+  .col-1 {
+    min-width: 40px;
+    background-color: white;
+    opacity: 0.75;
   }
 }

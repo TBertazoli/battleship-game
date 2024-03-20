@@ -118,6 +118,7 @@ function renderMessage() {
     turns.classList.add("d-none");
     button.classList.remove("d-none");
     button.innerHTML = "Play again?";
+    button.addEventListener("click", restartGame);
     message.innerHTML = `<span>${PLAYERS[winner]}</span> Wins!`;
   } else if (turn === 1) {
     turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
@@ -295,7 +296,12 @@ function checkHit(target) {
   }, "1000");
 }
 
+function resetGame() {}
+
 function startGame() {
+  if (winner) {
+    resetGame();
+  }
   generateGrid("c", computerGrid);
   generateGrid("p", playerGrid);
   renderMessage();
