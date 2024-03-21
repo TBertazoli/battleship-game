@@ -23,13 +23,28 @@ h1 {
   text-transform: uppercase;
 }
 
-/* .grid{
-  widht = 
-} */
+.floatL {
+  justify-content: left;
+}
 
-/* .container {
-  margin: 50px;
-} */
+.floatR {
+  justify-content: right;
+}
+
+#grid {
+  padding-top: 30px;
+  min-width: 1040px;
+}
+
+#computer-grid {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+#player-grid {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
 
 .row {
   height: 50px;
@@ -52,29 +67,36 @@ h1 {
   background-size: cover;
 }
 
-.floatR {
-  float: right !important;
-}
-
-.floatL {
-  float: left !important;
-}
-
 @media (max-width: 1700px) {
   body {
-    margin: 100px;
+    margin: 50px;
   }
   h1 {
     font-size: 80px;
   }
 
-  row {
-    min-height: 40px;
+  /* row {
+    min-height: 30px;
   }
 
   .col-1 {
-    min-width: 40px;
+    min-width: 30px;
     background-color: white;
     opacity: 0.75;
+  } */
+}
+
+@media (max-width: 992px) {
+  body {
+    margin: 40px;
   }
+  h1 {
+    font-size: 60px;
+  }
+  #grid {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
 }

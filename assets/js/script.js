@@ -118,8 +118,7 @@ function renderMessage() {
     turns.classList.add("d-none");
     button.classList.remove("d-none");
     button.innerHTML = "Play again?";
-    button.addEventListener("click", restartGame);
-    message.innerHTML = `<span>${PLAYERS[winner]}</span> Wins!`;
+    message.innerHTML = `<span>${PLAYERS[winner]} </span> Wins!`;
   } else if (turn === 1) {
     turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
     turns.classList.add("floatR");
@@ -255,6 +254,7 @@ function computersTurn(id) {
         }
       } else {
         compLastHit = [];
+
         row = Math.floor(Math.random() * 10);
         col = Math.floor(Math.random() * 10);
       }
@@ -296,14 +296,26 @@ function checkHit(target) {
   }, "1000");
 }
 
-function resetGame() {}
+function resetGame() {
+  winner = undefined;
+  playersHit = 0;
+  computersHit = 0;
+  compLastHit = [];
+  computerGrid.replaceChildren();
+  playerGrid.replaceChildren();
+  message.innerHTML = "";
+  turns.classList.remove("d-none");
+  turn = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
+}
 
 function startGame() {
   if (winner) {
     resetGame();
   }
+
+  renderMessage();
   generateGrid("c", computerGrid);
   generateGrid("p", playerGrid);
-  renderMessage();
+
   playGame();
 }
