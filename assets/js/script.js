@@ -63,8 +63,7 @@ function direction() {
 function placeShips(id) {
   SHIPS.forEach((ship) => {
     let shipAdded = false;
-    let count = 0;
-    while (!shipAdded && count < 500) {
+    while (!shipAdded) {
       const dir = direction();
       if (dir === "h") {
         const row = Math.floor(Math.random() * 10);
@@ -79,8 +78,11 @@ function placeShips(id) {
         if (canAddShip) {
           for (let i = col; i < col + ship; i++) {
             const el = document.querySelector(`#${id}${row}${i}`);
-            el.classList.add("ship-h");
-            el.innerHTML += `${ship}`;
+            if (id === "c") {
+              el.classList.add("bg-secondary");
+            }
+            //left this here intentionally for debugging purpose for game improvment
+            // el.innerHTML += `${ship}`;
             el.hasShip = true;
           }
           shipAdded = true;
@@ -98,14 +100,16 @@ function placeShips(id) {
         if (canAddShip) {
           for (let i = row; i < row + ship; i++) {
             const el = document.querySelector(`#${id}${i}${col}`);
-            el.classList.add("ship-v");
-            el.innerHTML += `${ship}`;
+            if (id === "c") {
+              el.classList.add("bg-secondary");
+            }
+            //left this here intentionally for debugging purpose for game improvment
+            // el.innerHTML += `${ship}`;
             el.hasShip = true;
           }
           shipAdded = true;
         }
       }
-      count++;
     }
   });
 }
@@ -118,7 +122,7 @@ function renderMessage() {
   } else if (winner) {
     button.classList.remove("d-none");
     button.innerHTML = "Play again?";
-    message.innerHTML = `<span>${PLAYERS[winner]} </span> Wins!`;
+    message.innerHTML = `<span>${PLAYERS[winner]}</span> Wins!`;
   } else if (turn === 1) {
     cturn.classList.add("invisible");
     pturn.classList.remove("invisible");
@@ -303,7 +307,8 @@ function resetGame() {
   computerGrid.replaceChildren();
   playerGrid.replaceChildren();
   message.innerHTML = "";
-  turns.classList.remove("d-none");
+  cturn.classList.add("invisible");
+  pturn.classList.add("invisible");
   turn = Math.floor(Math.random() * 2) === 0 ? 1 : -1;
 }
 
@@ -315,6 +320,5 @@ function startGame() {
   renderMessage();
   generateGrid("c", computerGrid);
   generateGrid("p", playerGrid);
-
   playGame();
 }

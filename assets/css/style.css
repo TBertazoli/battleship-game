@@ -3,6 +3,7 @@
 }
 
 body {
+  min-height: 100vh;
   padding: 200px;
   font-family: "Open Sans", sans-serif;
   background-image: url("/assets/images/ocean.jpeg");
@@ -50,17 +51,16 @@ h1 {
   background-size: cover;
 }
 
-@media (max-width: 1400px) {
+.main-section {
+  max-width: 1200px;
+}
+
+@media (max-width: 1500px) {
   body {
-    padding: 50px;
+    padding: 70px;
   }
 
   #main-section {
     max-width: 500px;
-  }
-  #grid {
-    .col + .col {
-      margin-top: 30px;
-    }
   }
 }
