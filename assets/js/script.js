@@ -29,7 +29,7 @@ const button = document.querySelector("#btn");
 function generateGrid(id, grid) {
   for (let i = 0; i < 10; i++) {
     const row = document.createElement("div");
-    row.classList.add("row", "border-1");
+    row.classList.add("row", "border-1", "g-0");
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
       cell.classList.add(
@@ -121,12 +121,12 @@ function renderMessage() {
     message.innerHTML = `<span>${PLAYERS[winner]} </span> Wins!`;
   } else if (turn === 1) {
     turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
-    turns.classList.add("floatR");
-    turns.classList.remove("floatL");
+    turns.classList.add("justify-content-end");
+    turns.classList.remove("justify-content-start");
   } else {
     turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
-    turns.classList.add("floatL");
-    turns.classList.remove("floatR");
+    turns.classList.add("justify-content-start");
+    turns.classList.remove("justify-content-end");
   }
 }
 
@@ -263,6 +263,7 @@ function computersTurn(id) {
     row = Math.floor(Math.random() * 10);
     col = Math.floor(Math.random() * 10);
   }
+
   const el = document.querySelector(`#${id}${row}${col}`);
   checkHit(el);
 }

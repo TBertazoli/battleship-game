@@ -1,21 +1,20 @@
-/* * {
+* {
   box-sizing: border-box;
-} */
+}
 
 body {
-  height: 100vh;
-  margin: 200px;
+  padding: 200px;
   font-family: "Open Sans", sans-serif;
   background-image: url("/assets/images/ocean.jpeg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
 }
 
 h1 {
   color: #111;
   font-family: "Raleway", sans-serif;
-  font-size: 160px;
+  font-size: 90px;
   font-weight: 800;
   line-height: 72px;
   margin: 0 0 24px;
@@ -23,31 +22,15 @@ h1 {
   text-transform: uppercase;
 }
 
-.floatL {
-  justify-content: left;
-}
-
-.floatR {
-  justify-content: right;
-}
-
 #grid {
-  padding-top: 30px;
-  min-width: 1040px;
-}
-
-#computer-grid {
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-#player-grid {
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-
-.row {
-  height: 50px;
+  .col {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+  }
+  .row {
+    height: 50px;
+  }
 }
 
 .col-1 {
@@ -67,36 +50,17 @@ h1 {
   background-size: cover;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1400px) {
   body {
-    margin: 50px;
-  }
-  h1 {
-    font-size: 80px;
+    padding: 50px;
   }
 
-  /* row {
-    min-height: 30px;
-  }
-
-  .col-1 {
-    min-width: 30px;
-    background-color: white;
-    opacity: 0.75;
-  } */
-}
-
-@media (max-width: 992px) {
-  body {
-    margin: 40px;
-  }
-  h1 {
-    font-size: 60px;
+  #main-section {
+    max-width: 500px;
   }
   #grid {
-    flex-direction: column;
+    .col + .col {
+      margin-top: 30px;
+    }
   }
-}
-
-@media (max-width: 600px) {
 }
