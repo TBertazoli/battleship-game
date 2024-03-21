@@ -21,8 +21,9 @@ let compLastHit = [];
 const computerGrid = document.querySelector("#computer-grid");
 const playerGrid = document.querySelector("#player-grid");
 const message = document.querySelector("#message");
-const turns = document.querySelector("#turns");
 const button = document.querySelector("#btn");
+const pturn = document.querySelector("#player-turn");
+const cturn = document.querySelector("#computer-turn");
 
 /*----- functions -----*/
 
@@ -115,18 +116,15 @@ function renderMessage() {
     button.innerHTML = "Play again?";
     message.innerText = "Tie Game!!";
   } else if (winner) {
-    turns.classList.add("d-none");
     button.classList.remove("d-none");
     button.innerHTML = "Play again?";
     message.innerHTML = `<span>${PLAYERS[winner]} </span> Wins!`;
   } else if (turn === 1) {
-    turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
-    turns.classList.add("justify-content-end");
-    turns.classList.remove("justify-content-start");
+    cturn.classList.add("invisible");
+    pturn.classList.remove("invisible");
   } else {
-    turns.innerHTML = `<span>${PLAYERS[turn]}'s</span> Turn!`;
-    turns.classList.add("justify-content-start");
-    turns.classList.remove("justify-content-end");
+    pturn.classList.add("invisible");
+    cturn.classList.remove("invisible");
   }
 }
 

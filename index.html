@@ -22,17 +22,19 @@
     <header><h1>Sink that Ship!</h1></header>
     <section id="main-section">
       <h3 class="d-flex justify-content-center m-5" id="message"></h3>
-      <div>
-        <h2 class="d-flex" id="turns"></h2>
-        <div class="">
-          <div class="row g-0 justify-content-between" id="grid">
-            <div class="col" id="computer-grid"></div>
-            <div class="col" id="player-grid"></div>
-          </div>
+      <div class="row g-0 justify-content-between" id="grid">
+        <div class="col">
+          <h2 id="computer-turn" class="d-flex invisible">Computer's Turn</h2>
+          <div class="col" id="computer-grid"></div>
+        </div>
+        <div class="col">
+          <h2 id="player-turn" class="d-flex justify-content-end invisible">
+            Player's Turn
+          </h2>
+          <div class="col" id="player-grid"></div>
         </div>
       </div>
     </section>
-
     <div class="d-flex justify-content-center">
       <button id="btn" class="btn btn-primary" onclick="startGame()">
         Play Game
