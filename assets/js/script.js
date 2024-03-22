@@ -123,6 +123,8 @@ function renderMessage() {
     button.classList.remove("d-none");
     button.innerHTML = "Play again?";
     message.innerHTML = `<span>${PLAYERS[winner]}</span> Wins!`;
+    cturn.classList.add("invisible");
+    pturn.classList.add("invisible");
   } else if (turn === 1) {
     cturn.classList.add("invisible");
     pturn.classList.remove("invisible");
@@ -134,7 +136,6 @@ function renderMessage() {
 
 function playGame() {
   button.classList.add("d-none");
-  console.log("computer hit: " + computersHit, "player hits:" + playersHit);
   if (computersHit === shipsLengthTotal) {
     winner = -1;
     renderMessage();
@@ -148,7 +149,6 @@ function playGame() {
 
 function playersTurn(e) {
   let target = e.target;
-  //if not players turn return
   if (turn === -1) return;
   checkHit(target);
 }
@@ -276,9 +276,9 @@ function checkHit(target) {
   }
   if (target.value === "X" || target.value === "H") return;
   if (target.hasShip) {
-    console.log("hit");
     target.value = "H";
     target.classList.add("ship");
+    message.innerText = "Hit";
     if (turn === -1) {
       computersHit++;
       compLastHit.push({ row: target.row, col: target.col });
@@ -286,7 +286,7 @@ function checkHit(target) {
       playersHit++;
     }
   } else {
-    console.log("miss");
+    message.innerHTML = "Miss";
     target.classList.add("bg-black");
     target.value = "X";
   }
@@ -296,7 +296,7 @@ function checkHit(target) {
   renderMessage();
   setTimeout(() => {
     playGame();
-  }, "1000");
+  }, "1500");
 }
 
 function resetGame() {

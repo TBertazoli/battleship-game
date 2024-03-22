@@ -19,6 +19,7 @@ This project was part of our first project assignment through General Assembly b
 - [Credits](#credits)
 - [License](#license)
 - [Contributions](#contributions)
+- [Future Enhancements](#future-enhancements)
 - [Questions](#questions)
 
 ## Installation
@@ -43,6 +44,10 @@ N/A
 ## Contributions
 
 N/A
+
+## Future Enhancements
+
+1 - Add a drag and drop feature for the user to be able to strategically place the ship
 
 ## Questions
 
