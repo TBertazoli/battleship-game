@@ -115,11 +115,7 @@ function placeShips(id) {
 }
 
 function renderMessage() {
-  if (winner === "T") {
-    button.classList.remove("d-none");
-    button.innerHTML = "Play again?";
-    message.innerText = "Tie Game!!";
-  } else if (winner) {
+  if (winner) {
     button.classList.remove("d-none");
     button.innerHTML = "Play again?";
     message.innerHTML = `<span>${PLAYERS[winner]}</span> Wins!`;
