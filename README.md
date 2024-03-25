@@ -39,7 +39,7 @@ N/A
 1 - Acces the [website](https://tbertazoli.github.io/battleship-game/)  
 2 - Press the Play Game button  
 3 - Start Playing.  
-4 - If it's players turn, just "click" on the choosen location of preference.
+4 - If it's players turn, just "click" on the choosen location of preference.  
 5 - The winner is the ones who sinks all the ships first.
 
 ## Credits
