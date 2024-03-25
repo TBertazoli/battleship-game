@@ -9,11 +9,12 @@
 ## Description
 
 Battleship Blitz game is an online game where players engage in classic naval warfare against a computer opponent. Both Players fleets are randomly placed at the start of each games. Each turn, players can select an empty cell to attack, aiming to sink their opponent's ships before their own fleet suffers the same fate. With varying ship sizes and challenging AI, "Battleship Blitz" offers an immersive and competitive gaming experience for naval enthusiasts.
-This project was part of our first project assignment through General Assembly bootcamp. The project was developed using JavaScript, CSS, HTML and some Bootstrap for better user experience.
+This project was part of our first project assignment through General Assembly bootcamp.
 
 ## Table of contents
 
 - [Description](#description)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
@@ -22,16 +23,24 @@ This project was part of our first project assignment through General Assembly b
 - [Future Enhancements](#future-enhancements)
 - [Questions](#questions)
 
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
+
 ## Installation
 
 N/A
 
 ## Usage
 
-1 - Acces the website  
+1 - Acces the [website](https://tbertazoli.github.io/battleship-game/)  
 2 - Press the Play Game button  
 3 - Start Playing.  
 4 - If it's players turn, just "click" on the choosen location of preference.
+5 - The winner is the ones who sinks all the ships first.
 
 ## Credits
 
